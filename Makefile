@@ -6,7 +6,7 @@
 #    By: amounach <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 00:10:00 by amounach          #+#    #+#              #
-#    Updated: 2022/04/23 01:23:28 by amounach         ###   ########.fr        #
+#    Updated: 2022/04/23 01:52:11 by amounach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,3 +54,5 @@ clean:
 
 fclean: clean
 	$(RMV) client server client_bonus server_bonus
+
+re : fclean all
