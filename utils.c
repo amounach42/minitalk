@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amounach <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/23 02:04:21 by amounach          #+#    #+#             */
+/*   Updated: 2022/04/23 02:07:39 by amounach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 static int	is_space(char c)
@@ -14,45 +26,41 @@ void	ft_putnbr(unsigned int nb)
 
 	res = 0;
 	n = nb;
-	if (n <=9 )
+	if (n <= 9)
 	{
 		res = n + 48;
 		write(1, &res, 1);
 	}
 	else
 	{
-		ft_putnbr(res / 10);
-		ft_putnbr(res % 10);
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
 	}
 }
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	res;
-	int	sign;
+	size_t	i;
+	size_t	result;
+	size_t	sign;
 
 	i = 0;
-	res = 0;
 	sign = 1;
-
-	while (is_space(str[i]))
-		i++;
-	while (str[i])
+	result = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+			i++;
+	if (str[i] == '-')
 	{
-		if (str[i] == '-')
-		{
-			sign *= -1;
-			i++;
-		}
-		else if (str[i] == '+')
-			i++;
-		while (str[i] && str[i] >= '0' && str[i] <= '9')
-		{
-			res *= 10;
-			res += str[i] - 48;
-			i++;
-		}
+		sign *= -1;
+		i++;
 	}
-	return (res * sign);
+	else if (str[i] == '+')
+		i++;
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		result *= 10;
+		result += str[i] - '0';
+		i++;
+	}
+	return (result * sign);
 }
